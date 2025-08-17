@@ -1,11 +1,30 @@
-# syntax = ghcr.io/siderolabs/bldr:v0.3.0
+# syntax = ghcr.io/siderolabs/bldr:v0.5.1
 
 format: v1alpha2
 
 vars:
+  # renovate: datasource=github-tags extractVersion=^lts-v(?<version>.*)$ depName=ARM-software/arm-trusted-firmware
+  arm_trusted_firmware_nonlts_version: v2.13.0
+  arm_trusted_firmware_nonlts_sha256: a0798acdac86101019f2e53c80846950c7a658314381c48c39a86f6b9fc70173
+  arm_trusted_firmware_nonlts_sha512: 2379dcd7a96e380e6b7d7558b0ee35be2790b8a2e66eb29faa87bff92e2372bfad98fcd445faac7fcbd8e094566266b241518d2f2508ea9ec161d876fe0d63e5
+
   # renovate: datasource=github-tags extractVersion=^v(?<version>.*)$ depName=u-boot/u-boot
-  uboot_version: 2023.01
-  uboot_sha256: 69423bad380f89a0916636e89e6dcbd2e4512d584308d922d1039d1e4331950f
-  uboot_sha512: 417a28267eb7875820d08fafc7316f164663609378637539e71648b0b9b7d28796b6c381717f31b0ab6472805fefd32628ef7d1b2e7b9f3c51c8ad122993f679
+  uboot_version: 2025.07
+  uboot_sha256: 0f933f6c5a426895bf306e93e6ac53c60870e4b54cda56d95211bec99e63bec7
+  uboot_sha512: 0d9a4906aaee134c6b6c496aaf7f54c653ede8e878f851e877ec7876e26cd14e356cd29112849295deeb72bee6b4d292151fb4d9db23d23608350c3fe567d955
+
+  # renovate: datasource=git-refs versioning=git depName=https://github.com/rockchip-linux/rkbin.git
+  rkbin_ref: f43a462e7a1429a9d407ae52b4745033034a6cf9
+  rkbin_sha256: 5484015e478100e72846d8e8fe3a6fb40269f3837018590b9a19d19f2a3b1736
+  rkbin_sha512: 3a2e24c16e3d3a129f4d7519bedd334bc34a614b099ca7b1e84c39c9dcb352896ab907d6d75b84c26942d13127c31897b2d58e1dd8900ac25f8dc1411a374fbe
+
+  # renovate: datasource=git-tags extractVersion=^v(?<version>.*)$ depName=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+  linux_version: 6.16.1
+  linux_sha256: ea43491bc7ace1e414b3b2d957f8cf96e7049155123f0acce798accf8da1acba
+  linux_sha512: 5b52251283ecf2d55d2700ed831f9f5484f825ca439704d6bb80cc8283833e84e6d5d2c2814316f2c955ebd985ee6d8e3c5ae16db406e1e2c669c730405c4df9
+
+  # renovate: datasource=docker versioning=docker depName=cgr.dev/chainguard/wolfi-base
+  wolfi_base_ref: sha256:574b4e2943d27a6564b2ed1ac39bce2285650631e93c0e5b1b84ddb177bdb358
+
 labels:
-  org.opencontainers.image.source: https://github.com/siderolabs/sbc-board
+  org.opencontainers.image.source: https://github.com/clingclangclick/sbc-quartz

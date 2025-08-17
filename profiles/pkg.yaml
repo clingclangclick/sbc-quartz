@@ -1,5 +1,7 @@
 name: profiles
 variant: scratch
 finalize:
-  - from: /pkg/board
+  - from: /pkg/quartz64-a
+    to: /rootfs/profiles
+  - from: /pkg/soquartz-blade
     to: /rootfs/profiles

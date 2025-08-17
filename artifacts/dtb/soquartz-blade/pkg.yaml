@@ -1,0 +1,31 @@
+name: dtb-soquartz-blade
+variant: scratch
+shell: /bin/bash
+dependencies:
+  - stage: base
+
+steps:
+  - sources:
+      - url: https://cdn.kernel.org/pub/linux/kernel/v{{ regexReplaceAll "(\\d+)(.\\d+)(\\.\\d+)?$" .linux_version "${1}" }}.x/linux-{{ .linux_version }}.tar.xz
+        destination: linux.tar.xz
+        sha256: "{{ .linux_sha256 }}"
+        sha512: "{{ .linux_sha512 }}"
+
+    prepare:
+      - |
+        tar -xJf linux.tar.xz --strip-components=1
+        rm linux.tar.xz
+
+    build:
+      - |
+          cpp -nostdinc -I include -I arch  -undef -x assembler-with-cpp  arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts rk3566-soquartz-blade.dts.preprocessed
+          dtc -O dtb -o rk3566-soquartz-blade.dtb rk3566-soquartz-blade.dts.preprocessed
+
+    install:
+      - |
+        mkdir -p /rootfs/dtb/rockchip
+
+        mv rk3566-soquartz-blade.dtb /rootfs/dtb/rockchip/rk3566-soquartz-blade.dtb
+finalize:
+  - from: /rootfs
+    to: /

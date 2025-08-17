@@ -1,18 +1,10 @@
-# sbc-template
+# sbc-quartz
 
-This is a template repository to generate a new project for the SBC.
+This repo provides the overlay for Pine64 Quartz based Talos image.
 
-The template already contains an example of building and copying over `u-boot`.
-This can be used as a starting point for your own project.
+## Supported Overlay
 
-## Requirements
-
-Using a sbc project templates assume docker is installed on your machine.
-
-## Usage
-
-* Create a new repository using this template.
-* Start by replacing `board` to `<your-board-name>`
-* Update `installers/<your-board-name>/src/main.go` with your own logic.
-* Run `make rekres`
-* Now run `make help` on instructions on setting up `buildx` builder if one is not already setup.
+| Overlay Name         | Board                 | SoC     | Description                                   |
+| -------------------- | --------------------- | ------- | --------------------------------------------- |
+| quartz64-a           | Quartz64-A.           | RK3399  | Overlay for Quartz64 Model A SBC              |
+| soquartz-blade       | SOQuartz Blade        | RK3566  | Overlay for SOQuartz Module on Pine64 Blade   |
